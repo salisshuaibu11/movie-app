@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .light {
+    --color-text-base: #eae2e2;
+    --color-text-muted: #ffcf91;
+    --color-text-inverted: #ffffff;
+    --color-text-muted-inverted: #d7d7d7;
+    --color-text-selected: #f19f36;
+    --color-bg: #938e94;
+    --color-primary: #5d5c61;
+    --color-secondary: #7395ae;
+    --color-tertiary: #557a95;
+    --color-border: #b0a295;
+  }
+
+  .dark {
+    --color-text-base: #09d3ac;
+    --color-text-muted: #ffffff;
+    --color-text-inverted: #ececec;
+    --color-text-muted-inverted: #616161;
+    --color-text-selected: #ff206e;
+    --color-bg: #000000;
+    --color-primary: #424242;
+    --color-secondary: #393737;
+    --color-tertiary: #1c1c1c;
+    --color-border: #303030;
+  }
+
+  @font-face {
+    font-family: 'Raleway';
+    font-weight: 400;
+    font-style: normal;
+    unicode-range: U+000-5FF;
+    src: local('Raleway');
+    font-display: swap;
+  }
+
+  h1 {
+    @apply text-4xl;
+  }
+
+  h2 {
+    @apply text-3xl;
+  }
+
+  h3 {
+    @apply text-2xl;
+  }
+
+  h4 {
+    @apply text-xl;
+  }
+
+  h5 {
+    @apply text-lg;
+  }
+
+  h6 {
+    @apply text-base;
+  }
+
+  p {
+    @apply text-xs;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold;
+  }
+
+  body {
+    @apply mx-auto;
+    @apply bg-skin-bg;
+  }
+}
+
+html {
+  overflow-y: scroll;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+}
