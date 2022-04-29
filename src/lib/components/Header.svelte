@@ -1,13 +1,25 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Selector from '../utilities/Selector.svelte';
 	import ToggleDarkMode from '../utilities/ToggleDarkMode.svelte';
 	import Search from '../utilities/Search.svelte';
+	import { media_type } from '$lib/stores/store';
+
+	function toggleHome() {
+		$media_type = 'movie';
+		goto('/');
+	}
 </script>
 
 <header class="w-full z-50 fixed top-0 h-11 bg-skin-primary">
 	<div class="max-w-7xl mx-auto flex justify-between pl-2 md:pl-5 lg:pl-7 pr-1 items-center mt-1">
 		<div class="flex flex-row items-center">
-			<button class="text-3xl text-skin-inverted hover:text-skin-selected" href="/">
+			<button
+				on:click|preventDefault={toggleHome}
+				hreflang="/"
+				class="text-3xl text-skin-inverted hover:text-skin-selected"
+				href="/"
+			>
 				<svg
 					width="27"
 					height="30"

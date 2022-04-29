@@ -1,29 +1,57 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import MovieList from './MovieList.svelte';
-
+	import TvList from './TvList.svelte';
 	import { current_page, media_type, data } from '$lib/stores/store';
 	import { get } from 'svelte/store';
 	import Genre from '$lib/components/Genre.svelte';
-	//export let total_pages = 1;
+
+	export let total_pages = 1;
 	export let genres: any = undefined;
-	//export let searching: any = undefined;
+	export let searching: any = undefined;
 
 	async function moreData() {
 		let res: Response;
 
-		res = await fetch('/api/postData', {
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			method: 'POST',
-			body: JSON.stringify({
-				api_ref: 'show_genres',
-				media: get(media_type),
-				page: get(current_page),
-				genre: genres
-			})
-		});
+		if (searching) {
+			res = await fetch('/api/postData', {
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				method: 'POST',
+				body: JSON.stringify({
+					api_ref: 'search',
+					media: get(media_type),
+					query: searching,
+					page: get(current_page)
+				})
+			});
+		} else if (genres === undefined) {
+			res = await fetch('/api/postData', {
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				method: 'POST',
+				body: JSON.stringify({
+					api_ref: 'show',
+					media: get(media_type),
+					page: get(current_page)
+				})
+			});
+		} else {
+			res = await fetch('/api/postData', {
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				method: 'POST',
+				body: JSON.stringify({
+					api_ref: 'show_genres',
+					media: get(media_type),
+					page: get(current_page),
+					genre: genres
+				})
+			});
+		}
 
 		const datas = await res.json();
 		const res_results = datas.res.results;
@@ -35,5 +63,11 @@
 </script>
 
 <section id="main" class="h-full">
-	<MovieList />
+	{#if $media_type === 'person'}
+		<h3>Person</h3>
+	{:else if $media_type === 'movie'}
+		<MovieList />
+	{:else if $media_type === 'tv'}
+		<TvList />
+	{/if}
 </section>
