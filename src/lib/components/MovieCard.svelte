@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { media_type } from '$lib/stores/store';
+	import ProgressBar from '$lib/utilities/ProgressBar.svelte';
 	const IMAGE_API = 'https://image.tmdb.org/t/p/w300';
 	export let datum: MovieType;
 </script>
@@ -25,7 +26,9 @@
 						{datum.release_date ? datum.release_date.substring(0, 4) : '-'}
 					</h6>
 				</div>
-				<div class="transform scale-44  origin-top-left absolute lef-1 top-56 xl:top-80">prog</div>
+				<div class="transform scale-44  origin-top-left absolute lef-1 top-56 xl:top-80">
+					<ProgressBar progress={datum.vote_average} />
+				</div>
 			</div>
 		</div>
 	</a>

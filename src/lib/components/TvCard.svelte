@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { media_type, show_name } from '$lib/stores/store';
+	import ProgressBar from '$lib/utilities/ProgressBar.svelte';
 	const IMAGE_API = 'https://image.tmdb.org/t/p/w300';
 	export let datum: TvType;
 	$show_name = datum.name;
@@ -27,8 +28,7 @@
 					</h6>
 				</div>
 				<div class="transform scale-44 origin-top-left absolute left-1 top-56 xl:top-80">
-					Progress
-					<!-- <ProgressBar progress={datum.vote_average} /> -->
+					<ProgressBar progress={datum.vote_average} />
 				</div>
 			</div>
 
