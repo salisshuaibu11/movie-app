@@ -4,8 +4,7 @@
 	 * @type {import('@sveltejs/kit').Load}
 	 */
 
-	export async function load({ params, fetch }) {
-		console.log(params);
+	export async function load({ params, fetch }: any) {
 		data.set([]);
 		current_page.set(1);
 		media_type.set(params.media as MediaType);
