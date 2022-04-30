@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+
 	import MovieList from './MovieList.svelte';
 	import TvList from './TvList.svelte';
+	import PersonList from './PersonList.svelte';
+
 	import { current_page, media_type, data } from '$lib/stores/store';
 	import { get } from 'svelte/store';
 	import Genre from '$lib/components/Genre.svelte';
@@ -64,7 +67,7 @@
 
 <section id="main" class="h-full">
 	{#if $media_type === 'person'}
-		<h3>Person</h3>
+		<PersonList />
 	{:else if $media_type === 'movie'}
 		<MovieList />
 	{:else if $media_type === 'tv'}
