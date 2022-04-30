@@ -2,6 +2,8 @@ import type { Writable } from "svelte/store";
 import { writable } from "svelte/store";
 
 export const current_page: Writable<number> = writable(1);
+export const trailer_key: Writable<string> = writable('xyz');
+export const video_site: Writable<string> = writable('');
 
 export const media_type: Writable<MediaType> = writable('movie');
 
