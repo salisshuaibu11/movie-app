@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { movie_genres, tv_genres } from '$lib/stores/store';
+	import { movie_genres, tv_genres, media_type, selected } from '$lib/stores/store';
 </script>
 
 <div class="bg-skin-primary w-full">
@@ -19,6 +19,11 @@
 						<button
 							aria-label={genre.name}
 							class="hover:bg-skin-primary p-1 block text-skin-base hover:text-skin-selected whitespace-nowrap"
+							class:bg-selected={$selected === genre.id && $media_type === 'movie'}
+							on:click|preventDefault={() => {
+								$selected = genre.id;
+								goto(`/genre/movie/${genre.id}`);
+							}}
 						>
 							{genre.name}
 						</button>
@@ -37,6 +42,11 @@
 					<li class="flex">
 						<button
 							class="hover:bg-skin-primary p-1 block text-skin-base hover:text-skin-selected whitespace-nowrap"
+							class:bg-selected={$selected === genre.id && $media_type === 'tv'}
+							on:click|preventDefault={() => {
+								$selected = genre.id;
+								goto(`/genre/tv/${genre.id}`);
+							}}
 						>
 							{genre.name}
 						</button>
